@@ -10,17 +10,17 @@ Vue.use(Router)
 import Layout from '../views/layout/Layout'
 
 /**
-* hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
-* alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
-*                                if not set alwaysShow, only more than one route under the children
-*                                it will becomes nested mode, otherwise not show the root menu
-* redirect: noredirect           if `redirect:noredirect` will no redirect in the breadcrumb
-* name:'router-name'             the name is used by <keep-alive> (must set!!!)
-* meta : {
+ * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
+ * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
+ *                                if not set alwaysShow, only more than one route under the children
+ *                                it will becomes nested mode, otherwise not show the root menu
+ * redirect: noredirect           if `redirect:noredirect` will no redirect in the breadcrumb
+ * name:'router-name'             the name is used by <keep-alive> (must set!!!)
+ * meta : {
     title: 'title'               the name show in submenu and breadcrumb (recommend set)
     icon: 'svg-name'             the icon show in the sidebar,
   }
-**/
+ **/
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
@@ -29,8 +29,9 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    name: '数据统计',
     hidden: true,
+    name: '数据统计',
+    meta: { title: '数据统计', icon: 'list' },
     children: [{
       path: 'dashboard',
       component: () => import('@/views/dashboard/index')
@@ -41,26 +42,26 @@ export const constantRouterMap = [
     path: '/teacher',
     component: Layout,
     redirect: '/teacher/table',
-    name: '讲师管理',
-    meta: { title: '讲师管理', icon: 'example' },
+    name: '教师管理',
+    meta: { title: '教师管理', icon: 'user' },
     children: [
       {
         path: 'table',
-        name: '讲师列表',
+        name: '教师列表',
         component: () => import('@/views/edu/teacher/list'),
-        meta: { title: '讲师列表', icon: 'table' }
+        meta: { title: '教师列表', icon: 'user' }
       },
       {
         path: 'save',
-        name: '添加讲师',
+        name: '添加教师',
         component: () => import('@/views/edu/teacher/save'),
-        meta: { title: '添加讲师', icon: 'tree' }
+        meta: { title: '添加教师', icon: 'eye' }
       },
       {
         path: 'save/:id',
-        name: '编辑讲师',
+        name: '编辑教师',
         component: () => import('@/views/edu/teacher/save'),
-        meta: { title: '编辑讲师', noCache: true },
+        meta: { title: '编辑教师', noCache: true },
         hidden: true
       }
     ]
@@ -69,20 +70,20 @@ export const constantRouterMap = [
     path: '/subject',
     component: Layout,
     redirect: '/subject/list',
-    name: '类别管理',
-    meta: { title: '类别管理', icon: 'example' },
+    name: '学院管理',
+    meta: { title: '学院管理', icon: 'tree' },
     children: [
       {
         path: 'list',
-        name: '类别管理',
+        name: '学院信息',
         component: () => import('@/views/edu/subject/list'),
-        meta: { title: '类别列表', icon: 'table' }
+        meta: { title: '学院信息', icon: 'eye' }
       },
       {
         path: 'save',
-        name: '添加类别',
+        name: '添加学院',
         component: () => import('@/views/edu/subject/save'),
-        meta: { title: '添加类别', icon: 'tree' }
+        meta: { title: '添加学院', icon: 'form' }
       }
     ]
   },
@@ -103,7 +104,7 @@ export const constantRouterMap = [
         path: '/info',
         name: '添加课程',
         component: () => import('@/views/edu/course/info'),
-        meta: { title: '添加课程', icon: 'tree' }
+        meta: { title: '添加课程', icon: 'eye' }
       },
       {
         path: 'info/:courseId',
@@ -142,85 +143,46 @@ export const constantRouterMap = [
       }
     ]
   },
-
   {
-    path: '/form',
+    path: '/banner',
+    component: Layout,
+    redirect: '/banner/list',
+    name: '轮播管理',
+    meta: { title: '轮播管理', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: '图片列表',
+        component: () => import('@/views/banner/list'),
+        meta: { title: '图片列表', icon: 'table' }
+      },
+      {
+        path: 'add',
+        name: '添加图片',
+        component: () => import('@/views/banner/add'),
+        meta: { title: '添加图片', icon: 'table' }
+      },
+    ]
+  },
+  {
+    path: '/dashboard',
     component: Layout,
     children: [
       {
         path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        name: '数据统计',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: '数据统计', icon: 'form' }
       }
     ]
   },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
   {
     path: 'external-link',
     component: Layout,
     children: [
       {
         path: 'https://github.com/linqibin0826',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: { title: '我的主页', icon: 'link' }
       }
     ]
   },

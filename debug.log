@@ -3,3 +3,7 @@
 [1125/004820.499:ERROR:exception_snapshot_win.cc(99)] thread ID 14832 not found in process
 [1125/004820.499:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
 [1125/004820.514:ERROR:exception_snapshot_win.cc(99)] thread ID 15136 not found in process
+[1203/222248.452:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
+[1225/203730.994:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
+[1225/221912.575:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\55608fad-5e80-4a2d-bcc3-9f8c7b38244a: 系统找不到指定的路径。 (0x3)
+[1225/221933.669:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: 操作成功完成。 (0x0)

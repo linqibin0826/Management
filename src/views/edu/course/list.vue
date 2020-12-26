@@ -6,11 +6,11 @@
       <el-form-item label="课程名称">
         <el-input v-model="condition.title" placeholder="课程名称" />
       </el-form-item>
-      <el-form-item label="课程类别">
-        <!--        当一级类别确定以后, 就可以绑定该课程的一级类别ID,即subjectParentId-->
+      <el-form-item label="所属学院">
+        <!--        当二级院校确定以后, 就可以绑定该课程的二级学院ID,即subjectParentId-->
         <el-select
           v-model="condition.subjectParentId"
-          placeholder="一级类别" @change="getSecondarySubject">
+          placeholder="学院" @change="getSecondarySubject">
           <el-option
             v-for="primarySubject in primarySubjectList"
             :key="primarySubject.id"
@@ -20,7 +20,7 @@
 
         <el-select
           v-model="condition.subjectId"
-          placeholder="二级类别">
+          placeholder="所属专业">
           <el-option
             v-for="secondarySubject in secondarySubjectList"
             :key="secondarySubject.id"
@@ -68,7 +68,7 @@
             </div>
             <div class="title">
               <a href="">{{ scope.row.title }}</a>
-              <p>{{ scope.row.lessonNum }}课时</p>
+              <p>共{{ scope.row.lessonNum }}课时</p>
             </div>
           </div>
 
@@ -93,9 +93,10 @@
           }}
         </template>
       </el-table-column>
-      <el-table-column prop="buyCount" label="付费学员" width="100" align="center">
+
+      <el-table-column prop="viewCount" label="观看人数" width="100" align="center">
         <template slot-scope="scope">
-          {{ scope.row.buyCount }}人
+          {{ scope.row.viewCount }}人
         </template>
       </el-table-column>
 
@@ -143,14 +144,14 @@ export default {
         title: '',
         teacherId: ''
       }, // 查询条件
-      teacherList: [], // 讲师列表
+      teacherList: [], // 教师列表
       primarySubjectList: [], // 一级分类列表
       secondarySubjectList: [] // 二级分类列表,
     }
   },
   created() {
-    this.getCourses()
     this.getAllTeacher()
+    this.getCourses()
     this.getAllSubject()
   },
   methods: {
@@ -159,12 +160,12 @@ export default {
       course.getCoursesByCP(this.page, this.limit, this.condition)
         .then(resp => {
           this.list = resp.data.courses
+          console.log(this.list)
           if (this.list.length > 0){
             this.total = resp.data.courses[0].total
           } else {
             this.total = 0
           }
-
           this.listLoading = false
         })
     },

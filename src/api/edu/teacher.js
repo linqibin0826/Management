@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
  export default {
-    //查询讲师
+    //查询教师
     getTeacherListPage(current, limit, teacherQuery) {
         return request({
             url: `/eduservice/teacher/pageTeacherCondition/${current}/${limit}`,
@@ -19,7 +19,7 @@ import request from '@/utils/request'
      })
    },
 
-    //删除讲师
+    //删除教师
     removeTeacherById(id) {
         return request({
             url: `/eduservice/teacher/${id}`,
@@ -27,7 +27,7 @@ import request from '@/utils/request'
         })
     },
 
-    //添加讲师
+    //添加教师
     addTeacher(teacher) {
         return request({
             url: `/eduservice/teacher/addTeacher`,
@@ -36,7 +36,7 @@ import request from '@/utils/request'
         })
     },
 
-    //根据id查询讲师信息用于回显
+    //根据id查询教师信息用于回显
     getTeacherById(id) {
         return request({
             url: `/eduservice/teacher/getTeacherById/${id}`,
@@ -44,7 +44,7 @@ import request from '@/utils/request'
         })
     },
 
-    //讲师信息修改
+    //教师信息修改
     updateTeacher(teacher) {
         return request({
             url: `eduservice/teacher/updateTeacherById`,

@@ -2,18 +2,18 @@
   <div class="dashboard-container">
     <!--查询表单-->
     <el-form :inline="true" class="demo-form-inline">
-      <el-form-item label="教师名">
-        <el-input v-model="teacherQuery.name" placeholder="教师名" />
+      <el-form-item label="教师名称">
+        <el-input v-model="teacherQuery.name" placeholder="教师名称" />
       </el-form-item>
 
       <el-form-item label="教师头衔">
         <el-select
           v-model="teacherQuery.level"
           clearable
-          placeholder="讲师头衔"
+          placeholder="教师头衔"
         >
-          <el-option :value="1" label="高级讲师" />
-          <el-option :value="2" label="首席讲师" />
+          <el-option :value="1" label="讲师" />
+          <el-option :value="2" label="教授" />
         </el-select>
       </el-form-item>
 
@@ -57,7 +57,7 @@
 
       <el-table-column label="头衔" width="80">
         <template slot-scope="scope">
-          {{ scope.row.level === 1 ? "高级讲师" : "首席讲师" }}
+          {{ scope.row.level === 1 ? "讲师" : "教授" }}
         </template>
       </el-table-column>
 
@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     //创建具体的方法,  调用teacher.js定义的方法, teacher.js中是对后端接口进行数据请求的。内有数据
-    //获取讲师列表
+    //获取教师列表
     getTeacherListPage(page = 1) {
       this.page = page; //使当前页数为分页组件传进来的那个参数
       teacher
@@ -129,10 +129,10 @@ export default {
           this.total = response.data.total;
         })
     },
-    //根据ID删除讲师
+    //根据ID删除教师
     removeTeacherById(id) {
       // console.log(id);
-      this.$confirm("此操作将永久删除该讲师, 是否继续?", "提示", {
+      this.$confirm("此操作将永久删除该教师师, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",

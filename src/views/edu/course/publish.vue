@@ -16,7 +16,7 @@
         <h2>{{ prepublishCourseInfo.title }}</h2>
         <p class="gray"><span>共{{ prepublishCourseInfo.lessonNum }}课时</span></p>
         <p><span>所属分类：{{ prepublishCourseInfo.primarySubject }} — {{ prepublishCourseInfo.secondarySubject }}</span></p>
-        <p>课程讲师：{{ prepublishCourseInfo.teacherName }}</p>
+        <p>课程教师：{{ prepublishCourseInfo.teacherName }}</p>
         <h3 class="red">￥{{ prepublishCourseInfo.price }}</h3>
       </div>
     </div>

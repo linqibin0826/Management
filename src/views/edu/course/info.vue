@@ -16,7 +16,7 @@
         <el-input v-model="courseInfo.title" placeholder=" 示例：机器学习项目课：从基础到搭建项目视频课程。专业名称注意大小写"/>
       </el-form-item>
 
-      <el-form-item label="课程讲师">
+      <el-form-item label="课程教师">
         <el-select
           v-model="courseInfo.teacherId"
           placeholder="请选择">
@@ -33,7 +33,7 @@
 <!--        当一级类别确定以后, 就可以绑定该课程的一级类别ID,即subjectParentId-->
         <el-select
           v-model="courseInfo.subjectParentId"
-          placeholder="一级类别" @change="getSecondarySubject">
+          placeholder="学院" @change="getSecondarySubject">
           <el-option
             v-for="primarySubject in PrimarySubjectList"
             :key="primarySubject.id"
@@ -43,7 +43,7 @@
 
         <el-select
           v-model="courseInfo.subjectId"
-          placeholder="二级类别">
+          placeholder="专业">
           <el-option
             v-for="secondarySubject in secondarySubjectList"
             :key="secondarySubject.id"
@@ -107,7 +107,7 @@ export default {
         teacherId: '',
         lessonNum: 0,
         description: '',
-        cover: 'https://edu-hugh.oss-cn-shenzhen.aliyuncs.com/2020/10/19/6d6087250a2d409ca9c9d25a874853eeIMG_20200225_212932%20%283%29.jpg',
+        cover: 'https://edu-hugh.oss-cn-shenzhen.aliyuncs.com/2020/u%3D639299053%2C3877813446%26fm%3D26%26gp%3D0.jpg',
         price: 0
       },
       courseId: '',
@@ -126,7 +126,7 @@ export default {
       //获取所有一级分类
       this.getAllSubject()
     }
-    //获取所有讲师
+    //获取所有教师
     this.getAllTeacher()
   },
   watch: {
